@@ -45,11 +45,11 @@ def varified(grid, row, col, val):
             return False
 
     rhead, chead = block_head(row, col)
-    block_arr = [
+    block_arr = (
                 grid[y][x]
                 for y in range(rhead, rhead+3)
                 for x in range(chead, chead+3)
-            ]
+            )
     # print(block_arr)
     # box checking
     if val in block_arr:
