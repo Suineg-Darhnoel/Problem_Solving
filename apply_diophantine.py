@@ -1,11 +1,11 @@
 import diophantine as mdp
-pairs = [
-            (144, 89),
-            (1960, 103),
-            (170, 51),
-            (233, 144),
-            (3127, 901),
+tuples = [
+            (144, 89, 1),
+            (1960, 103, 1),
+            (170, 51, 12),
+            (233, 144, 18),
+            (3127, 901, 5723),
         ]
 
-for pair in pairs:
-    mdp.solve(*pair)
+for tp in tuples:
+    mdp.solve(*tp)
