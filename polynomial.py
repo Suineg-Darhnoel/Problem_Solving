@@ -4,14 +4,13 @@ from collections.abc import Iterable
 class Polynomial:
     """
     Polynomial in the form of a_nX^n + a_(n-1)X^(n-1) + ... + a_0
-
     """
     def __init__(self, coeffs=[]):
         self.__coeffs = coeffs
         self.__degree = len(coeffs)-1
 
-    # compute polynomial using bruteforce
-    def compute(self, x):
+    # compute polynomial using bruteforce (power of n)
+    def eval_bruteforce(self, x):
         assert(self.degree >= 0)
         total = 0
         for n, coeff in enumerate(self.coeffs):
@@ -20,7 +19,7 @@ class Polynomial:
         return total
 
     # compute polynomial using horner's rule
-    def horner(self, x):
+    def eval_horner(self, x):
         assert(self.degree >= 0)
         total = 0
         for coeff in self.coeffs[:-1]:
@@ -42,6 +41,12 @@ class Polynomial:
         for c_p1, c_p2 in zip(self.coeffs, other.coeffs):
             new_coeffs.append(c_p1 - c_p2)
         return Polynomial(new_coeffs)
+
+    # compute multiplication of two
+    # polynomial in O(nlogn) time complexity
+    def __mul__(self, other):
+        print("Polynomial Multiplication")
+        assert(isinstance(other, Polynomial))
 
     def __eq__(self, other):
         return True if self.coeffs == other.coeffs else False
@@ -75,8 +80,8 @@ y = Polynomial([4, 2, -1])
 z = Polynomial([3, 4, 5])
 
 print(y)
-y.compute(-100)
-y.horner(-100)
+y.eval_bruteforce(-100)
+y.eval_horner(-100)
 print(x+y)
 print(x-y)
 print(x == y)
